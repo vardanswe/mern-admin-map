@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { Layout, Avatar, Menu, Dropdown } from "antd";
+import {Layout, Avatar, Menu, Dropdown, Divider} from "antd";
 
-import { UserOutlined } from "@ant-design/icons";
+import { FileTextOutlined, UserOutlined , LoginOutlined} from "@ant-design/icons";
 import { logout } from "@/redux/auth/actions";
 import uniqueId from "@/utils/uinqueId";
+import {Link} from "react-router-dom";
 const { Header } = Layout;
 
 export default function HeaderContent() {
@@ -13,27 +14,17 @@ export default function HeaderContent() {
 
   const menu = (
     <Menu>
-      <Menu.Item key={`${uniqueId()}`} onClick={() => dispatch(logout())}>
-        logout
-      </Menu.Item>
-      <Menu.Item key={`${uniqueId()}`}>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="http://www.taobao.com/"
-        >
-          2nd menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item key={`${uniqueId()}`}>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="http://www.tmall.com/"
-        >
-          3rd menu item
-        </a>
-      </Menu.Item>
+        <Menu.Item key={`${uniqueId()}`} icon={<UserOutlined />}>
+            <Link to="/customer">Add Customer</Link>
+        </Menu.Item>
+        <Menu.Item key={`${uniqueId()}`} icon={<FileTextOutlined />}>
+            <Link to="/lead" />
+            Add Sales Lead
+        </Menu.Item>
+        <Divider style={{margin:'5px'}} />
+        <Menu.Item icon={<LoginOutlined />} key={`${uniqueId()}`} onClick={() => dispatch(logout())}>
+            logout
+        </Menu.Item>
     </Menu>
   );
   return (

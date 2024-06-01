@@ -8,6 +8,12 @@ import PageLoader from "@/components/PageLoader";
 const Dashboard = lazy(() =>
   import(/*webpackChunkName:'DashboardPage'*/ "@/pages/Dashboard")
 );
+const Compare = lazy(() =>
+    import(/*webpackChunkName:'DashboardPage'*/ "@/pages/Compare")
+);
+const LeadsMap = lazy(() =>
+    import(/*webpackChunkName:'DashboardPage'*/ "@/pages/LeadsMap")
+);
 const Admin = lazy(() =>
   import(/*webpackChunkName:'AdminPage'*/ "@/pages/Admin")
 );
@@ -16,14 +22,7 @@ const Customer = lazy(() =>
   import(/*webpackChunkName:'CustomerPage'*/ "@/pages/Customer")
 );
 
-const SelectCustomer = lazy(() =>
-  import(/*webpackChunkName:'SelectCustomerPage'*/ "@/pages/SelectCustomer")
-);
-
 const Lead = lazy(() => import(/*webpackChunkName:'LeadPage'*/ "@/pages/Lead"));
-const Product = lazy(() =>
-  import(/*webpackChunkName:'ProductPage'*/ "@/pages/Product")
-);
 
 const Logout = lazy(() =>
   import(/*webpackChunkName:'LogoutPage'*/ "@/pages/Logout")
@@ -39,17 +38,13 @@ export default function AppRouter() {
       <AnimatePresence exitBeforeEnter initial={false}>
         <Switch location={location} key={location.pathname}>
           <PrivateRoute path="/" component={Dashboard} exact />
+          <PrivateRoute path="/compare" component={Compare} exact />
+          <PrivateRoute path="/leads-map" component={LeadsMap} exact />
           <PrivateRoute component={Customer} path="/customer" exact />
-          <PrivateRoute
-            component={SelectCustomer}
-            path="/selectcustomer"
-            exact
-          />
           <PrivateRoute component={Lead} path="/lead" exact />
-          <PrivateRoute component={Product} path="/product" exact />
-          <PrivateRoute component={Admin} path="/admin" exact />
-
+          <PrivateRoute component={Admin} path="/manage-admins" exact />
           <PrivateRoute component={Logout} path="/logout" exact />
+
           <PublicRoute path="/login" render={() => <Redirect to="/" />} />
           <Route
             path="*"
