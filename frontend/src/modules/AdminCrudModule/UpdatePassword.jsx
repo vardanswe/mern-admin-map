@@ -6,7 +6,6 @@ import { useCrudContext } from "@/context/crud";
 import { selectUpdatedItem } from "@/redux/crud/selectors";
 
 import { Button, Form, Input } from "antd";
-import { LockOutlined } from "@ant-design/icons";
 import Loading from "@/components/Loading";
 import useOnFetch from "@/hooks/useOnFetch";
 import { request } from "@/request";
@@ -61,7 +60,6 @@ export default function UpdatePassword({ config }) {
             ]}
           >
             <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               autoComplete="off"
             />

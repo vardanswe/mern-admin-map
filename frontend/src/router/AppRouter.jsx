@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
@@ -36,7 +36,7 @@ export default function AppRouter() {
   return (
     <Suspense fallback={<PageLoader />}>
       <AnimatePresence exitBeforeEnter initial={false}>
-        <Switch location={location} key={location.pathname}>
+        <Routes location={location} key={location.pathname}>
           <PrivateRoute path="/" component={Dashboard} exact />
           <PrivateRoute path="/compare" component={Compare} exact />
           <PrivateRoute path="/leads-map" component={LeadsMap} exact />
@@ -45,13 +45,13 @@ export default function AppRouter() {
           <PrivateRoute component={Admin} path="/manage-admins" exact />
           <PrivateRoute component={Logout} path="/logout" exact />
 
-          <PublicRoute path="/login" render={() => <Redirect to="/" />} />
+          <PublicRoute path="/login" render={() => <Navigate to="/" />} />
           <Route
             path="*"
             component={NotFound}
-            render={() => <Redirect to="/notfound" />}
+            render={() => <Navigate to="/notfound" />}
           />
-        </Switch>
+        </Routes>
       </AnimatePresence>
     </Suspense>
   );

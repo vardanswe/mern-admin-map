@@ -1,38 +1,62 @@
-// export { default as AuthRouter } from "./AuthRouter";
-// export { default as AppRouter } from "./AppRouter";
-import React, { useEffect } from "react";
-
-import AuthRouter from "./AuthRouter";
-import AppRouter from "./AppRouter";
-
-import { Layout } from "antd";
+import {
+    Route, Routes
+} from "react-router-dom";
+import React, {lazy, Suspense} from "react";
+import {Layout} from "antd";
 import Navigation from "@/layout/Navigation";
+import PageLoader from "@/components/PageLoader";
+import {AnimatePresence} from "framer-motion";
+import Login from "@/pages/Login";
 
-import { useSelector } from "react-redux";
-import { selectAuth } from "@/redux/auth/selectors";
+const Dashboard = lazy(() =>
+    import(/*webpackChunkName:'DashboardPage'*/ "@/pages/Dashboard")
+);
+const Compare = lazy(() =>
+    import(/*webpackChunkName:'DashboardPage'*/ "@/pages/Compare")
+);
+const LeadsMap = lazy(() =>
+    import(/*webpackChunkName:'DashboardPage'*/ "@/pages/LeadsMap")
+);
+const Admin = lazy(() =>
+    import(/*webpackChunkName:'AdminPage'*/ "@/pages/Admin")
+);
 
-export default function Router() {
-  const { isLoggedIn } = useSelector(selectAuth);
+const Customer = lazy(() =>
+    import(/*webpackChunkName:'CustomerPage'*/ "@/pages/Customer")
+);
 
-  useEffect(() => {
-    console.log("isLoggedIn : ", isLoggedIn);
-  }, [isLoggedIn]);
+const Lead = lazy(() => import(/*webpackChunkName:'LeadPage'*/ "@/pages/Lead"));
 
-  if (isLoggedIn === false)
-    return (
-      <Layout style={{ minHeight: "100vh" }}>
-        <AuthRouter />
-      </Layout>
-    );
-  else
-    return (
-      <Layout style={{ minHeight: "100vh" }}>
-        <Navigation />
-        <Layout style={{ minHeight: "100vh" }}>
-          <AppRouter />
+const Logout = lazy(() =>
+    import(/*webpackChunkName:'LogoutPage'*/ "@/pages/Logout")
+);
+const NotFound = lazy(() =>
+    import(/*webpackChunkName:'NotFoundPage'*/ "@/pages/NotFound")
+);
+
+
+const Index = () => {
+    return <Layout style={{minHeight: "100vh"}}>
+        <Navigation/>
+        <Layout style={{minHeight: "100vh"}}>
+            <Suspense fallback={<PageLoader/>}>
+                <AnimatePresence initial={false}>
+                    <Routes>
+                        <Route path="/" element={<Dashboard/>}/>
+                        <Route path="/compare" element={<Compare/>}/>
+                        <Route path="/logout" element={<Logout/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/sales-leads" element={<LeadsMap/>}/>
+                        <Route path="/customer" element={<Customer/>}/>
+                        <Route path="/lead" element={<Lead/>}/>
+                        <Route path="/manage-admins" element={<Admin/>}/>
+                        <Route path="*" element={<NotFound/>}/>
+                    </Routes>;
+                </AnimatePresence>
+            </Suspense>
         </Layout>
-      </Layout>
-    );
-}
+    </Layout>
 
-// export default App;
+};
+
+export default Index;

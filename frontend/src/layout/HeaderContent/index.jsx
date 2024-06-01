@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import {Layout, Avatar, Menu, Dropdown, Divider} from "antd";
+import {Layout, Avatar, Menu, Dropdown, Divider, Flex} from "antd";
 
 import { FileTextOutlined, UserOutlined , LoginOutlined} from "@ant-design/icons";
 import { logout } from "@/redux/auth/actions";
@@ -32,9 +32,11 @@ export default function HeaderContent() {
       className="site-layout-background"
       style={{ padding: 0, background: "none" }}
     >
-      <Dropdown overlay={menu} placement="bottomRight" arrow>
-        <Avatar icon={<UserOutlined />} />
-      </Dropdown>
+        <Flex justify={'flex-end'} gap={8}>
+            <Dropdown overlay={menu} placement="bottomRight" arrow>
+                <Avatar icon={<UserOutlined />} />
+            </Dropdown>
+        </Flex>
     </Header>
   );
 }

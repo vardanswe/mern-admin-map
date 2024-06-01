@@ -3,8 +3,6 @@ import { Form, Input, InputNumber, Space, Divider, Row, Col } from "antd";
 
 import { Layout, Breadcrumb, Statistic, Progress, Tag } from "antd";
 
-import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
-
 import { DashboardLayout } from "@/layout";
 import RecentTable from "@/components/RecentTable";
 
@@ -239,7 +237,7 @@ export default function Dashboard() {
                 Customer Preview
               </h3>
 
-              <Progress type="dashboard" percent={25} width={148} />
+              <Progress type="dashboard" percent={25} size={148} />
               <p>New Customer this Month</p>
               <Divider />
               <Statistic
@@ -247,7 +245,6 @@ export default function Dashboard() {
                 value={11.28}
                 precision={2}
                 valueStyle={{ color: "#3f8600" }}
-                prefix={<ArrowUpOutlined />}
                 suffix="%"
               />
             </div>

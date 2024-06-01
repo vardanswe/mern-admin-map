@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Navigate } from "react-router-dom";
 
 import * as authService from "@/auth";
 
@@ -27,7 +27,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             <Component {...props} />
           </motion.div>
         ) : (
-          <Redirect to="/login" />
+          <Navigate to="/login" />
         )
       }
     />

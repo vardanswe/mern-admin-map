@@ -36,11 +36,11 @@ export default function RecentTable({ ...props }) {
     ...dataTableColumns,
     {
       title: "",
-      render: (row) => (
-        <Dropdown overlay={DropDownRowMenu({ row })} trigger={["click"]}>
-          <EllipsisOutlined style={{ cursor: "pointer", fontSize: "24px" }} />
-        </Dropdown>
-      ),
+      // render: (row) => (
+      //   <Dropdown overlay={DropDownRowMenu({ row })} trigger={["click"]}>
+      //     <EllipsisOutlined style={{ cursor: "pointer", fontSize: "24px" }} />
+      //   </Dropdown>
+      // ),
     },
   ];
 

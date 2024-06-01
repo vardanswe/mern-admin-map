@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from "react";
-import { Dropdown, Button, PageHeader, Table } from "antd";
-
-import { EllipsisOutlined } from "@ant-design/icons";
+import { Dropdown, Button, Table } from "antd";
+import { PageHeader } from '@ant-design/pro-layout';
 import { useSelector, useDispatch } from "react-redux";
 import { crud } from "@/redux/crud/actions";
 import { selectListItems } from "@/redux/crud/selectors";
+import { EllipsisOutlined } from "@ant-design/icons";
 
 import uniqueId from "@/utils/uinqueId";
 
@@ -14,11 +14,11 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
     ...dataTableColumns,
     {
       title: "",
-      render: (row) => (
-        <Dropdown overlay={DropDownRowMenu({ row })} trigger={["click"]}>
-          <EllipsisOutlined style={{ cursor: "pointer", fontSize: "24px" }} />
-        </Dropdown>
-      ),
+      // render: (row) => (
+      //   <Dropdown overlay={DropDownRowMenu({ row })} trigger={["click"]}>
+      //     <EllipsisOutlined style={{ cursor: "pointer", fontSize: "24px" }} />
+      //   </Dropdown>
+      // ),
     },
   ];
 

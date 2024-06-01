@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Suspense } from "react";
-import { Router as RouterHistory } from "react-router-dom";
+import { BrowserRouter as RouterHistory} from 'react-router-dom';
 import { Provider } from "react-redux";
 import Router from "@/router";
 import history from "@/utils/history";
@@ -29,7 +29,7 @@ function App() {
     );
   else {
     return (
-      <RouterHistory history={history}>
+      <RouterHistory>
         <Provider store={store}>
           <Router />
         </Provider>

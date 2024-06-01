@@ -75,13 +75,13 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
                 : "",
             },
           },
-          children: (
-            <Dropdown overlay={DropDownRowMenu({ row })} trigger={["click"]}>
-              <EllipsisOutlined
-                style={{ cursor: "pointer", fontSize: "24px" }}
-              />
-            </Dropdown>
-          ),
+          // children: (
+          //   <Dropdown overlay={DropDownRowMenu({ row })} trigger={["click"]}>
+          //     <EllipsisOutlined
+          //       style={{ cursor: "pointer", fontSize: "24px" }}
+          //     />
+          //   </Dropdown>
+          // ),
         };
       },
     },
@@ -161,9 +161,7 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
     onChange: onSelectChange,
     hideSelectAll: true,
     columnWidth: 0,
-
     renderCell: handelColorRow,
-    selectedRowKeys: selectedRowKeys,
   };
 
   return (

@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import PublicRoute from "./PublicRoute";
 import PageLoader from "@/components/PageLoader";
@@ -17,19 +17,19 @@ export default function AuthRouter() {
   return (
     <Suspense fallback={<PageLoader />}>
       <AnimatePresence exitBeforeEnter initial={false}>
-        <Switch location={location} key={location.pathname}>
+        <Routes location={location} key={location.pathname}>
           <PublicRoute
             path="/"
             component={Login}
-            render={() => <Redirect to="/login" />}
+            render={() => <Navigate to="/login" />}
           />
           <PublicRoute component={Login} path="/login" exact />
           <Route
             path="*"
             component={NotFound}
-            render={() => <Redirect to="/notfound" />}
+            render={() => <Navigate to="/notfound" />}
           />
-        </Switch>
+        </Routes>
       </AnimatePresence>
     </Suspense>
   );

@@ -1,4 +1,4 @@
-import { parse } from "querystring";
+import { parse } from "querystring-es3";
 function getPageQuery() {
   parse(window.location.href.split("?")[1]);
 }
